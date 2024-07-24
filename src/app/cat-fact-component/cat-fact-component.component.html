@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="top-section">
+      <app-loader [loading]="loading"></app-loader>
+      <div *ngIf="error" class="error-message">{{ error }}</div>
+      <div *ngIf="catFact" class="cat-fact">{{ catFact }}</div>
+      <button (click)="fetchCatFact()">Fetch New Fact</button>
+    </div>
+    <hr class="separator">
+    <div class="bottom-section">
+      <h3>Previously Fetched Facts:</h3>
+      <ul>
+        <li *ngFor="let fact of catFacts | paginate: { itemsPerPage: pageSize, currentPage: page }">{{ fact }}</li>
+      </ul>
+      <pagination-controls (pageChange)="page = $event"></pagination-controls>
+    </div>
+  </div>
